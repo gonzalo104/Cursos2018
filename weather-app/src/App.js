@@ -43,11 +43,9 @@ class App extends Component {
             <Paper zDepth={4}>
               <div className="detail">
                 {
-                  !this.state.city ?
-                   <h1>No se selecccionó ciudad</h1> : 
-                    <ForecastExtended city={this.state.city}></ForecastExtended>
-                }
-               
+                  this.state.city &&
+                  <ForecastExtended city={this.state.city}></ForecastExtended>
+                }               
               </div>
             </Paper>
           </Col>
