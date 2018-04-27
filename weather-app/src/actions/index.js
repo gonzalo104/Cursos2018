@@ -3,7 +3,7 @@ export const SET_CITY = 'SET_CITY';
 export const SET_FORECAST_DATA = 'SET_FORECAST_DATA';
 const setCity = payload => ({type: 'SET_CITY', payload})
 
-const setForcastData = payload => ({type:SET_FORECAST_DATA, payload})
+const setForecastData = payload => ({type:SET_FORECAST_DATA, payload})
 
 const api_key = "a7d1c86d3802f3effadbe35c142cf3f4"
 const url = "http://api.openweathermap.org/data/2.5/forecast"
@@ -24,7 +24,7 @@ export const setSelectedCity = payload => {
                 const forecastData = transformForecast(weather_data)
                 console.log(forecastData)
                //modificar el estado con  el resultado de la primise()
-               dispatch(setForcastData({city:payload, forecastData}))
+               dispatch(setForecastData({city:payload, forecastData}))
             }
         )
   
