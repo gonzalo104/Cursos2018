@@ -13,9 +13,10 @@ const LocationList = ({cities, onSelectedLocation}) => {
 		const stringToComponent = cities => (
 			cities.map(city => (
 				<WeatherLocation 
-					key={city}
-					city={city}   
-					onWeatherLocationClick = {() => hanIdeWeatherLocationClick(city)} />))
+					key={city.key}
+					city={city.name}   
+					onWeatherLocationClick = {() => hanIdeWeatherLocationClick(city.name)}
+					data = {city.data} />))
 		);
 
 		return (
