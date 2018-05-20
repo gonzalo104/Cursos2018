@@ -3,6 +3,7 @@ import {Link, BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import HomeContainer from './containers/HomeContainer';
 import CustumersContainer from './containers/CustumersContainer';
+import CustumerContainer from './containers/CustumerContainer';
 
 class App extends Component {
   renderhome = () => <h1>Home</h1>;
@@ -20,7 +21,8 @@ class App extends Component {
           <Route exact path="/custumers" component={CustumersContainer}/>
           <Switch>
             <Route path="/custumers/new" component={this.renderCustumerNewContainer}/>
-            <Route path="/custumers/:dni" component={this.renderCustumerContainer}/>        
+            <Route  path="/custumers/:dni" 
+            render={props => <CustumerContainer {...props} dni={props.match.params.dni }/>}/>        
           </Switch>
           </div>
       </Router>

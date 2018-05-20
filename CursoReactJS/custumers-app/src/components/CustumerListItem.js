@@ -7,13 +7,13 @@ const CustumerListItem = ({name, editAction, delAction,urlPath, dni}) => {
         <div>
             <div className="custumer-list-item">
                 <div className="field">
-                    <Link to={`${urlPath}${dni}`}>{name}</Link>
+                    <Link to={`${dni}`}>{name}</Link>
                 </div>
                 <div className="field">
-                    <Link to={`${urlPath}${dni}/edit`}>{editAction}</Link>
+                    <Link to={`${dni}/edit`}>{editAction}</Link>
                 </div>
                 <div className="field">
-                    <Link to={`${urlPath}${dni}/del`}>delAction</Link>
+                    <Link to={`${dni}/del`}>delAction</Link>
                 </div>
             </div>
         </div>

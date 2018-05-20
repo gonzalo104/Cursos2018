@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import CustumersList from '../components/CustumersList';
 import CustumersActions from '../components/CustumersActions';
 import {fetchCustumers} from '../actions/fetchCustumers';
+import { getCustumers } from '../selectors/custumers';
 
 const custumers = [
     {
@@ -64,7 +65,7 @@ class CustumersContainer extends Component {
 
 CustumersContainer.propTypes = {
     fetchCustumers: PropTypes.func.isRequired,
-    custumers: PropTypes.array.isRequired,
+    custumers: PropTypes.array.isRequired,    
 };
 
 CustumersContainer.defaultProps = {
@@ -72,7 +73,7 @@ CustumersContainer.defaultProps = {
 }
 
 const mapStateToProps = state => ({
-    custumers: state.custumers,
+    custumers: getCustumers(state)
 });
 
 
