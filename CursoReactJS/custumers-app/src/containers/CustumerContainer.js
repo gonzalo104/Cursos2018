@@ -8,37 +8,66 @@ import CustumerEdit from './../components/CustumerEdit';
 import CustumerData  from './../components/CustumerData';
 import {fetchCustumers} from './../actions/fetchCustumers';
 import {updateCustumer} from './../actions/updateCustumer';
+import { SubmissionError } from 'redux-form'
+import { deleteCustumer } from '../actions/deleteCustumer';
 //<p>Datos del cliente "{this.props.custumer.name}"</p>
 
 class CustumerContainer extends Component {
 
     componentDidMount(){
-        if (!this.props.custumer) {
+        if (this.props.custumer.length === 0) {
             this.props.fetchCustumers();
         }
     }
 
     handleSubmit = values => {
-        console.log(JSON.stringify(values));
+        //console.log(JSON.stringify(values));
         const {id} = values;
-        this.props.updateCustumer(id,values);
+        return this.props.updateCustumer(id,values).then(r => {
+            if (r.error) {
+                throw new SubmissionError(r.payload);
+            }
+        });
         
     }
 
     handleOnBack = () => {
         this.props.history.goBack();
     }
+    
+    handleOnSubmitSuccess = () => {
+        this.props.history.goBack();
+    }
+    
+    handleOnDelete = id => {
+        console.log("eliminando")
+        this.props.deleteCustumer(id).then(v => {
+            this.props.history.goBack();
+        });
+    }
+
+    renderCustumerControl = (isEdit, isDelete) => {
+        if(this.props.custumer){
+            const CustumerControl = isEdit ? CustumerEdit : CustumerData;
+            return <CustumerControl 
+                {...this.props.custumer} 
+                onSubmit={this.handleSubmit} 
+                onBack={this.handleOnBack}  
+                onSubmitSuccess={this.handleOnSubmitSuccess} 
+                isDeleteAllow={!!isDelete}
+                onDelete={this.handleOnDelete}/>  
+        }
+        
+        return null;  
+    }
 
     renderBody = () => (
         <Route path="/custumers/:dni/edit" children={
-            ({match}) => {
-                if(this.props.custumer){
-                    const CustumerControl = match ? CustumerEdit : CustumerData;
-                    return <CustumerControl {...this.props.custumer} onSubmit={this.handleSubmit} onBack={this.handleOnBack}/>  
-                }
-                
-                return null;  
-            }
+            ({match: isEdit}) => (
+                <Route path="/custumers/:dni/del" children={
+                    ( {match: isDelete} ) => (
+                        this.renderCustumerControl(isEdit, isDelete))
+                }/>)
         }/>
     ) 
     
@@ -59,6 +88,7 @@ CustumerContainer.propTypes = {
     custumer: PropTypes.object,
     fetchCustumers: PropTypes.func.isRequired,
     updateCustumer: PropTypes.func.isRequired,
+    deleteCustumer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state,props) => ({
@@ -70,6 +100,7 @@ const mapStateToProps = (state,props) => ({
 export default withRouter(connect(mapStateToProps,
     {
         fetchCustumers,
-        updateCustumer
+        updateCustumer,
+        deleteCustumer
     }
 )(CustumerContainer));

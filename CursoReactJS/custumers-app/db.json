@@ -1,36 +1,45 @@
 {
-
-    "custumers": [{
-            "id": "2700000",
-            "dni": "2700000",
-            "name": "Juan Perez",
-            "age": 37
-        },
-        {
-            "id": "3000000",
-            "dni": "3000000",
-            "name": "Otro",
-            "age": 35
-        },
-        {
-            "id": "3300000",
-            "dni": "3300000",
-            "name": "Luis Martinez",
-            "age": 32
-        }
-    ],
-
-    "posts": [{
-        "id": 1,
-        "title": "json-server",
-        "author": "typicode"
-    }],
-    "comments": [{
-        "id": 1,
-        "body": "some comment",
-        "postId": 1
-    }],
-    "profile": {
-        "name": "typicode"
+  "custumers": [
+    {
+      "id": "3000000",
+      "dni": "3000000",
+      "name": "Otro",
+      "age": 39
+    },
+    {
+      "id": "3300000",
+      "dni": "3300000",
+      "name": "Luis Martinez",
+      "age": 32
+    },
+    {
+      "name": "NUEVO CLIENTE 1",
+      "dni": "1234567",
+      "age": 6,
+      "id": "a9E0Hf~"
+    },
+    {
+      "name": "CLIENTE 2",
+      "dni": "4321",
+      "age": 2,
+      "id": "SllDmF_"
     }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
